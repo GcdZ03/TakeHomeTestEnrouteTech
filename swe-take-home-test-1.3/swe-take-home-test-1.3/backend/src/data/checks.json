@@ -1,0 +1,178 @@
+[
+  {
+    "id": "CHK001",
+    "vehicleId": "VH001",
+    "odometerKm": 15420,
+    "items": [
+      {
+        "key": "TYRES",
+        "status": "OK"
+      },
+      {
+        "key": "BRAKES",
+        "status": "OK"
+      },
+      {
+        "key": "LIGHTS",
+        "status": "OK"
+      },
+      {
+        "key": "OIL",
+        "status": "OK"
+      },
+      {
+        "key": "COOLANT",
+        "status": "OK"
+      }
+    ],
+    "note": "All systems nominal",
+    "hasIssue": false,
+    "createdAt": "2026-01-20T08:30:00.000Z"
+  },
+  {
+    "id": "CHK002",
+    "vehicleId": "VH002",
+    "odometerKm": 22350,
+    "items": [
+      {
+        "key": "TYRES",
+        "status": "OK"
+      },
+      {
+        "key": "BRAKES",
+        "status": "FAIL"
+      },
+      {
+        "key": "LIGHTS",
+        "status": "OK"
+      },
+      {
+        "key": "OIL",
+        "status": "OK"
+      },
+      {
+        "key": "COOLANT",
+        "status": "OK"
+      }
+    ],
+    "note": "Brake pads need replacement soon - squeaking sound when applying brakes",
+    "hasIssue": true,
+    "createdAt": "2026-01-22T07:15:00.000Z"
+  },
+  {
+    "id": "81c7e672-7081-4089-981a-13ffecb918eb",
+    "vehicleId": "VH003",
+    "odometerKm": 1,
+    "items": [
+      {
+        "key": "TYRES",
+        "status": "OK"
+      },
+      {
+        "key": "BRAKES",
+        "status": "OK"
+      },
+      {
+        "key": "LIGHTS",
+        "status": "OK"
+      },
+      {
+        "key": "OIL",
+        "status": "OK"
+      },
+      {
+        "key": "COOLANT",
+        "status": "OK"
+      }
+    ],
+    "hasIssue": false,
+    "createdAt": "2026-01-24T03:28:08.198Z"
+  },
+  {
+    "id": "751fe555-9669-4d48-840f-f8db26ebee24",
+    "vehicleId": "VH001",
+    "odometerKm": 123456,
+    "items": [
+      {
+        "key": "TYRES",
+        "status": "OK"
+      },
+      {
+        "key": "BRAKES",
+        "status": "FAIL"
+      },
+      {
+        "key": "LIGHTS",
+        "status": "FAIL"
+      },
+      {
+        "key": "OIL",
+        "status": "FAIL"
+      },
+      {
+        "key": "COOLANT",
+        "status": "OK"
+      }
+    ],
+    "hasIssue": true,
+    "createdAt": "2026-01-24T04:37:03.305Z"
+  },
+  {
+    "id": "7f5b3a4e-62ed-40e5-8d1e-145179d1c9cf",
+    "vehicleId": "VH001",
+    "odometerKm": 123456,
+    "items": [
+      {
+        "key": "TYRES",
+        "status": "OK"
+      },
+      {
+        "key": "BRAKES",
+        "status": "OK"
+      },
+      {
+        "key": "LIGHTS",
+        "status": "OK"
+      },
+      {
+        "key": "OIL",
+        "status": "OK"
+      },
+      {
+        "key": "COOLANT",
+        "status": "OK"
+      }
+    ],
+    "hasIssue": false,
+    "createdAt": "2026-01-24T04:39:18.970Z"
+  },
+  {
+    "id": "960a1541-fda3-408c-8feb-fa2bb4c4c381",
+    "vehicleId": "VH001",
+    "odometerKm": 1234566,
+    "items": [
+      {
+        "key": "TYRES",
+        "status": "OK"
+      },
+      {
+        "key": "BRAKES",
+        "status": "OK"
+      },
+      {
+        "key": "LIGHTS",
+        "status": "OK"
+      },
+      {
+        "key": "OIL",
+        "status": "OK"
+      },
+      {
+        "key": "COOLANT",
+        "status": "OK"
+      }
+    ],
+    "hasIssue": false,
+    "createdAt": "2026-01-24T04:39:26.109Z"
+  }
+]

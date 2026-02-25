@@ -1,0 +1,23 @@
+[
+  {
+    "id": "VH001",
+    "registration": "ABC123",
+    "make": "Toyota",
+    "model": "Hilux",
+    "year": 2022
+  },
+  {
+    "id": "VH002",
+    "registration": "XYZ789",
+    "make": "Ford",
+    "model": "Ranger",
+    "year": 2021
+  },
+  {
+    "id": "VH003",
+    "registration": "DEF456",
+    "make": "Isuzu",
+    "model": "D-Max",
+    "year": 2023
+  }
+]
