@@ -18,6 +18,8 @@ export function CheckForm({ onSuccess }: Props) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [validationErrors, setValidationErrors] = useState<string[]>([]);
+  const [note, setNote] = useState("");
+  const NOTE_MAX = 300;
 
   useEffect(() => {
     api.getVehicles().then(setVehicles).catch(console.error);
@@ -44,11 +46,13 @@ export function CheckForm({ onSuccess }: Props) {
         vehicleId: selectedVehicle,
         odometerKm: parseFloat(odometerKm),
         items,
+        ...(note.trim() ? { note: note.trim() } : {}),
       });
 
       // Reset form and display success notification
       setSelectedVehicle("");
       setOdometerKm("");
+      setNote("");
       setItems(
         CHECK_ITEMS.map((key) => ({ key, status: "OK" })),
       );
@@ -142,6 +146,21 @@ export function CheckForm({ onSuccess }: Props) {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="note">Notes (optional)</label>
+        <textarea
+          id="note"
+          value={note}
+          onChange={(e) => setNote(e.target.value.slice(0, NOTE_MAX))}
+          maxLength={NOTE_MAX}
+          placeholder="Add any additional notes (max 300 characters)"
+          rows={4}
+        />
+        <div className="char-counter">
+          {note.length}/{NOTE_MAX}
         </div>
       </div>
 

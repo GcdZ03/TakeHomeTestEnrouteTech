@@ -348,5 +348,151 @@
     ],
     "hasIssue": true,
     "createdAt": "2026-02-27T07:46:26.509Z"
+  },
+  {
+    "id": "bd9fe346-5881-4e86-9e1e-008f401c1a72",
+    "vehicleId": "VH001",
+    "odometerKm": 21321327,
+    "items": [
+      {
+        "key": "TYRES",
+        "status": "OK"
+      },
+      {
+        "key": "BRAKES",
+        "status": "OK"
+      },
+      {
+        "key": "LIGHTS",
+        "status": "OK"
+      },
+      {
+        "key": "OIL",
+        "status": "OK"
+      },
+      {
+        "key": "COOLANT",
+        "status": "OK"
+      }
+    ],
+    "hasIssue": false,
+    "createdAt": "2026-02-27T08:03:28.149Z"
+  },
+  {
+    "id": "53000078-7ec2-42a3-86df-7e95e0d8dfb4",
+    "vehicleId": "VH001",
+    "odometerKm": 21321328,
+    "items": [
+      {
+        "key": "TYRES",
+        "status": "OK"
+      },
+      {
+        "key": "BRAKES",
+        "status": "OK"
+      },
+      {
+        "key": "LIGHTS",
+        "status": "OK"
+      },
+      {
+        "key": "OIL",
+        "status": "OK"
+      },
+      {
+        "key": "COOLANT",
+        "status": "OK"
+      }
+    ],
+    "hasIssue": false,
+    "createdAt": "2026-02-27T08:09:36.177Z"
+  },
+  {
+    "id": "9d696a02-4de8-4ddb-a48e-696538fc4dba",
+    "vehicleId": "VH001",
+    "odometerKm": 21321329,
+    "items": [
+      {
+        "key": "TYRES",
+        "status": "OK"
+      },
+      {
+        "key": "BRAKES",
+        "status": "OK"
+      },
+      {
+        "key": "LIGHTS",
+        "status": "OK"
+      },
+      {
+        "key": "OIL",
+        "status": "OK"
+      },
+      {
+        "key": "COOLANT",
+        "status": "OK"
+      }
+    ],
+    "hasIssue": false,
+    "createdAt": "2026-02-27T08:10:57.688Z"
+  },
+  {
+    "id": "703e8f80-78f1-44a5-b612-ea07d81f6de6",
+    "vehicleId": "VH001",
+    "odometerKm": 21321330,
+    "items": [
+      {
+        "key": "TYRES",
+        "status": "OK"
+      },
+      {
+        "key": "BRAKES",
+        "status": "OK"
+      },
+      {
+        "key": "LIGHTS",
+        "status": "OK"
+      },
+      {
+        "key": "OIL",
+        "status": "OK"
+      },
+      {
+        "key": "COOLANT",
+        "status": "OK"
+      }
+    ],
+    "hasIssue": false,
+    "createdAt": "2026-02-27T08:47:47.530Z"
+  },
+  {
+    "id": "e5cea029-53a4-4c80-9b6b-554777ae74d1",
+    "vehicleId": "VH001",
+    "odometerKm": 21321331,
+    "items": [
+      {
+        "key": "TYRES",
+        "status": "OK"
+      },
+      {
+        "key": "BRAKES",
+        "status": "OK"
+      },
+      {
+        "key": "LIGHTS",
+        "status": "OK"
+      },
+      {
+        "key": "OIL",
+        "status": "OK"
+      },
+      {
+        "key": "COOLANT",
+        "status": "OK"
+      }
+    ],
+    "note": "testing notes",
+    "hasIssue": false,
+    "createdAt": "2026-02-27T08:49:27.896Z"
   }
 ]
