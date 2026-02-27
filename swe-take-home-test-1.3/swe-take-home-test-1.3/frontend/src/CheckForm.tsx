@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import type { Vehicle, CheckItem, CheckItemKey, ErrorResponse } from "./types";
 import { api } from "./api";
+import { ToastContainer } from "./Toast";
+import { useToast } from "./useToast";
 
 const CHECK_ITEMS: CheckItemKey[] = ["TYRES", "BRAKES", "LIGHTS", "OIL", "COOLANT"];
 
@@ -20,6 +22,7 @@ export function CheckForm({ onSuccess }: Props) {
   const [validationErrors, setValidationErrors] = useState<string[]>([]);
   const [note, setNote] = useState("");
   const NOTE_MAX = 300;
+  const {toasts, showToast, dismissToast} = useToast();
 
   useEffect(() => {
     api.getVehicles().then(setVehicles).catch(console.error);
@@ -49,6 +52,8 @@ export function CheckForm({ onSuccess }: Props) {
         ...(note.trim() ? { note: note.trim() } : {}),
       });
 
+      showToast("Check submitted successfully!", "success");
+
       // Reset form and display success notification
       setSelectedVehicle("");
       setOdometerKm("");
@@ -59,12 +64,14 @@ export function CheckForm({ onSuccess }: Props) {
       onSuccess();
     } catch (err: unknown) {
       const errorResponse = err as ErrorResponse;
-      if (errorResponse.error?.details) {
-        setValidationErrors(
-          errorResponse.error.details.map((d) => `${d.field}: ${d.reason}`),
-        );
+      if (errorResponse.error?.details?.length) {
+        const msgs = errorResponse.error.details.map((d) => `${d.field}: ${d.reason}`);
+        setValidationErrors(msgs);
+        showToast(msgs[0], "error");
       } else {
-        setError("Failed to submit check. Please try again.");
+        const msg = errorResponse.error?.message ?? "Failed to submit check. Please try again.";
+        setError(msg);
+        showToast(msg, "error");
       }
     } finally {
       setLoading(false);
@@ -75,6 +82,8 @@ export function CheckForm({ onSuccess }: Props) {
     <form onSubmit={handleSubmit} className="check-form">
       <h2>Submit Vehicle Inspection Result</h2>
 
+      <ToastContainer toasts={toasts} onDismiss={dismissToast} />
+      
       {error && <div className="error-banner">{error}</div>}
       {validationErrors.length > 0 && (
         <div className="error-banner">
