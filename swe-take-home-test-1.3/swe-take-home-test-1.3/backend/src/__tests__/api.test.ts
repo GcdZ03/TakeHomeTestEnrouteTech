@@ -128,7 +128,7 @@ describe("API Integration Tests", () => {
       (database.writeChecks as jest.Mock).mockImplementation(() => {});
     });
 
-    it.skip("should create check and return 201", async () => {
+    it("should create check and return 201", async () => {
       // Act & Assert
       const response = await request(app)
         .post("/checks")
@@ -145,7 +145,7 @@ describe("API Integration Tests", () => {
       expect(database.writeChecks).toHaveBeenCalled();
     });
 
-    it.skip("should set hasIssue to true when any item fails", async () => {
+    it("should set hasIssue to true when any item fails", async () => {
       // Arrange
       const bodyWithFailure = {
         ...validCheckBody,

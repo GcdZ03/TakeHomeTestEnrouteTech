@@ -27,7 +27,27 @@ import { ErrorResponse } from "../types";
  * @returns JSON response with created check or validation errors
  */
 export const createCheck = (req: Request, res: Response): void => {
-  res.status(501).json({ error: { message: "Not implemented" } });
+  // Validate request body
+  const validation = validateCheckRequest(req.body);
+
+  // If validation fails, return 400 with ErrorResponse format
+  if (validation.length > 0) {
+    const errorResponse: ErrorResponse = {
+      error: {
+        code: "VALIDATION_ERROR",
+        message: "Invalid request",
+        details: validation,
+      },
+    };
+    res.status(400).json(errorResponse);
+    return;
+  }
+
+  // Call service to create check
+  const createdCheck = checkService.createCheck(req.body);
+
+  // Return 201 with created check
+  res.status(201).json(createdCheck);
 };
 
 /**
@@ -132,5 +152,19 @@ export const deleteCheck = (req: Request, res: Response): void => {
     return;
   }
 
-  res.status(501).json({ error: { message: "Not completed" } });
+  const deleted = checkService.deleteCheck(id);
+
+  if (!deleted) {
+    const errorResponse: ErrorResponse = {
+      error: {
+        code: "NOT_FOUND",
+        message: "Check not found",
+        details: [{ field: "id", reason: "not found" }],
+      },
+    };
+    res.status(404).json(errorResponse);
+    return;
+  }
+
+  res.status(204).send();
 };
