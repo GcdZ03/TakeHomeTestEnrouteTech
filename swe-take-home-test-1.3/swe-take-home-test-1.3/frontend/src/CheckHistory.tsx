@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import type { Vehicle, Check } from "./types";
+import type { Vehicle, Check, ErrorResponse } from "./types";
 import { api } from "./api";
+import { useToast } from "./useToast";
+import { ToastContainer } from "./Toast";
 
 type IssueFilter = "all" | "true" | "false";
 
@@ -13,6 +15,8 @@ export function CheckHistory({ refreshTrigger }: Props) {
   const [selectedVehicle, setSelectedVehicle] = useState("");
   const [hasIssueFilter, setHasIssueFilter] = useState<IssueFilter>("all");
   const [checks, setChecks] = useState<Check[]>([]);
+  const { toasts, showToast, dismissToast } = useToast();
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   // Track which params fetched
   const [lastFetchedParams, setLastFetchedParams] = useState<{
@@ -76,9 +80,37 @@ export function CheckHistory({ refreshTrigger }: Props) {
     return new Date(isoString).toLocaleString();
   };
 
+  const handleDelete = async (id: string) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this inspection record?"
+    );
+    if (!confirmDelete) return;
+
+    setDeletingId(id);
+
+    try {
+      await api.deleteCheck(id);
+
+      // Remove deleted item from UI
+      setChecks((prev) => prev.filter((check) => check.id !== id));
+
+      showToast("Inspection record deleted successfully.", "success");
+    } catch (err: unknown) {
+      const error = err as ErrorResponse;
+      const message =
+        error?.error?.message ?? "Failed to delete inspection record.";
+
+      showToast(message, "error");
+    } finally {
+      setDeletingId(null);
+    }
+  };
+
   return (
     <div className="check-history">
       <h2>View Inspection History</h2>
+      
+      <ToastContainer toasts={toasts} onDismiss={dismissToast} />
 
       <div className="filters">
         <div className="form-group">
@@ -161,6 +193,16 @@ export function CheckHistory({ refreshTrigger }: Props) {
                     <p>{check.note}</p>
                   </div>
                 )}
+              </div>
+              <div className="delete-box">
+                <button 
+                  className="delete-button"
+                  type="button"
+                  onClick={() => handleDelete(check.id)}
+                  disabled={deletingId === check.id}
+                >
+                  {deletingId === check.id ? "Deleting..." : "Delete"}
+                </button>
               </div>
             </div>
           ))}
