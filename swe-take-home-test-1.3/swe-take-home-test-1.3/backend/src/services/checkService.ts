@@ -43,7 +43,7 @@ export interface CheckFilters {
  */
 export const createCheck = (checkData: CreateCheckData): Check => {
   // @ts-ignore
-  const hasIssue = checkData.items.some((item) => item.status === "FAILED");
+  const hasIssue = checkData.items.some((item) => item.status === "FAIL");
 
   const newCheck: Check = {
     id: uuidv4(),
@@ -51,7 +51,7 @@ export const createCheck = (checkData: CreateCheckData): Check => {
     odometerKm: checkData.odometerKm,
     items: checkData.items,
     ...(checkData.note !== undefined && { note: checkData.note }),
-    hasIssue: !hasIssue,
+    hasIssue,
     createdAt: new Date().toISOString(),
   };
 
