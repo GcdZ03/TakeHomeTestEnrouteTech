@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import type { Vehicle, CheckItem, CheckItemKey, ErrorResponse } from "./types";
 import { api } from "./api";
 
-const CHECK_ITEMS: CheckItemKey[] = ["TYRES", "BRAKES", "LIGHTS"];
+const CHECK_ITEMS: CheckItemKey[] = ["TYRES", "BRAKES", "LIGHTS", "OIL", "COOLANT"];
 
 interface Props {
   onSuccess: () => void;
@@ -13,7 +13,7 @@ export function CheckForm({ onSuccess }: Props) {
   const [selectedVehicle, setSelectedVehicle] = useState("");
   const [odometerKm, setOdometerKm] = useState("");
   const [items, setItems] = useState<CheckItem[]>(
-    CHECK_ITEMS.map((key) => ({ key, status: true as unknown as "OK" })),
+    CHECK_ITEMS.map((key) => ({ key, status: "OK" })),
   );
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -23,11 +23,11 @@ export function CheckForm({ onSuccess }: Props) {
     api.getVehicles().then(setVehicles).catch(console.error);
   }, []);
 
-  const handleItemStatusChange = (key: CheckItemKey, status: boolean) => {
+  const handleItemStatusChange = (key: CheckItemKey, status: "OK" | "FAIL") => {
     setItems((prev) =>
       prev.map((item) =>
         item.key === key
-          ? { ...item, status: status as unknown as "OK" | "FAIL" }
+          ? { ...item, status }
           : item,
       ),
     );
@@ -50,7 +50,7 @@ export function CheckForm({ onSuccess }: Props) {
       setSelectedVehicle("");
       setOdometerKm("");
       setItems(
-        CHECK_ITEMS.map((key) => ({ key, status: true as unknown as "OK" })),
+        CHECK_ITEMS.map((key) => ({ key, status: "OK" })),
       );
       onSuccess();
     } catch (err: unknown) {
@@ -103,7 +103,8 @@ export function CheckForm({ onSuccess }: Props) {
         <label htmlFor="odometer">Odometer (km) *</label>
         <input
           id="odometer"
-          type="text"
+          type="number"
+          min="0"
           value={odometerKm}
           onChange={(e) => setOdometerKm(e.target.value)}
           placeholder="Enter odometer reading"
@@ -118,12 +119,12 @@ export function CheckForm({ onSuccess }: Props) {
             <div key={item.key} className="checklist-item">
               <span className="item-label">{item.key}</span>
               <select
-                value={String(item.status)}
+                value={item.status}
                 onChange={(e) =>
-                  handleItemStatusChange(item.key, e.target.value === "true")
+                  handleItemStatusChange(item.key, e.target.value as "OK" | "FAIL")
                 }>
-                <option value="true">OK</option>
-                <option value="false">FAIL</option>
+                <option value="OK">OK</option>
+                <option value="FAIL">FAIL</option>
               </select>
             </div>
           ))}
