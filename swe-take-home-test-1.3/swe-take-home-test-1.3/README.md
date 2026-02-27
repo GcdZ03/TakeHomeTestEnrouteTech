@@ -73,15 +73,30 @@ Please answer these briefly:
 
 1. **Authentication:** If we need to add authentication to this system, how would you approach it?
 
+Firstly, I would add authentication by implementing a secure login system using JWT-based authentication. On the backend, I would create authentication routes. Tokens would be validated on each request, and user information with roles would be attached to the request object for authorisation checks. On the frontend, I would add a login page, store tokens securely preferably using HttpOnly cookies for refresh tokens, and protect routes so only authenticated users can access the inspection form and history page.
+
 2. **Improvements:** What other improvements would you implement if this were going to production or if you have more time?
+
+On the backend, I'd add authorisation roles, stronger input validation, more consistent error handling, a working real database with migrations. I'd also add more automated tests and audit logs for deletion. On the frontend, I'd improve the form UX with clearer inline validation and accessibility. Lastly, I would implement CI/CD for code quality checks so each release is stable.
 
 3. **Tech Stack Experience:** Do you have experience with PHP, Vue.js, or mobile app development (React Native/Flutter)?
 
+I have experience with React and Angular for frontend development. While I haven't worked extensively with PHP or Vue.js in production, I'm comfortable learning new frameworks quickly with my foundation in JavaScript and other similar frameworks. For mobile development, I have experience building applications using React Native with Expo, where I worked on developing UI components, handling navigation and intgrating APIs.
+
 4. **AI / Tools:** What tools/assistants did you use while working on this assignment (e.g., GitHub Copilot, ChatGPT, etc.)? We appreciate AI usage, we're interested in _how_ you use these tools.
+
+I've used ChatGPT for generating some coding structure and syntax, github copilot for auto completion when coding.
 
 5. **Visa Status:** What visa are you currently on?
 
+I'm currently in student visa (500) and in the process of getting my graduate visa (485) which will be valid for 2 years. The estimated date for obtaining the graduate visa is Early March 2026. I am available to start working immediately as there are no working restrictions for my student visa after graduation.
+
 6. **Languages:** What language(s) do you speak and what's your proficiency level?
+
+English (Fluent)
+Chinese (Native)
+Malay (Basic)
+Cantonese (Intermediate)
 
 > **Tip:** You can write your answers directly in this README.md file below each question.
 
