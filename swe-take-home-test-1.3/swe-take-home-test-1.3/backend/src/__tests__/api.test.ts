@@ -128,7 +128,7 @@ describe("API Integration Tests", () => {
       (database.writeChecks as jest.Mock).mockImplementation(() => {});
     });
 
-    it.skip("should create check and return 201", async () => {
+    it("should create check and return 201", async () => {
       // Act & Assert
       const response = await request(app)
         .post("/checks")
