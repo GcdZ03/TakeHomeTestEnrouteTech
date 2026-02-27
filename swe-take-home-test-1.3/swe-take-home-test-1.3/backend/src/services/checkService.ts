@@ -133,5 +133,15 @@ export const getCheckById = (checkId: string): Check | undefined => {
  * }
  */
 export const deleteCheck = (checkId: string): boolean => {
-  return false;
+  const checks = readChecks();
+
+  const nextChecks = checks.filter((check) => check.id !== checkId);
+
+  // If nothing was removed, the check didn't exist
+  if (nextChecks.length === checks.length) {
+    return false;
+  }
+
+  writeChecks(nextChecks);
+  return true;
 };

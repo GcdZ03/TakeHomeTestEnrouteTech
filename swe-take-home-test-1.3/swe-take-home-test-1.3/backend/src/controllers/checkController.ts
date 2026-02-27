@@ -152,5 +152,19 @@ export const deleteCheck = (req: Request, res: Response): void => {
     return;
   }
 
-  res.status(501).json({ error: { message: "Not completed" } });
+  const deleted = checkService.deleteCheck(id);
+
+  if (!deleted) {
+    const errorResponse: ErrorResponse = {
+      error: {
+        code: "NOT_FOUND",
+        message: "Check not found",
+        details: [{ field: "id", reason: "not found" }],
+      },
+    };
+    res.status(404).json(errorResponse);
+    return;
+  }
+
+  res.status(204).send();
 };
